@@ -70,7 +70,7 @@
         const apiKey = "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"; 
 
         // --- Groq API Function (ersetzt Gemini) ---
-        const callAI = async (prompt, system = "Du bist ein professioneller Atletica X-Five Fitnesscoach. Antworte kurz, präzise und motivierend auf Deutsch.") => {
+        const callAI = async (prompt, system = "Du bist ein professioneller Atletica X-Five Fitnesscoach. Antworte kurz aber präzise und motivierend auf Deutsch.") => {
             if (!apiKey) return "Bitte füge deinen Groq API-Key im Code ein!";
             
             const url = `https://api.groq.com/openai/v1/chat/completions`;
