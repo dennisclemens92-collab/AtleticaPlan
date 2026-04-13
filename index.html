@@ -35,11 +35,12 @@
             Activity, Save, Trash2, RotateCcw, X, Layers, Sparkles, Send, Loader2, Zap
         } from 'https://esm.sh/lucide-react@0.344.0';
         
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
-        import { getFirestore, collection, doc, onSnapshot, addDoc, deleteDoc, serverTimestamp, query } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
-        import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+        // Stabile Firebase Module
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+        import { getFirestore, collection, doc, onSnapshot, addDoc, deleteDoc, serverTimestamp, query } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js';
+        import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
 
-        // --- Firebase Configuration ---
+        // --- Firebase Configuration (Deine Daten) ---
         const firebaseConfig = {
             apiKey: "AIzaSyBbcTIag7ze1bPkmfxtnTxmR2WsJiZdr-8",
             authDomain: "atleticaapp-378da.firebaseapp.com",
@@ -53,7 +54,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         const appId = 'atleticaapp-378da';
-        const apiKeyGemini = ""; 
+        const apiKeyGemini = ""; // Leer lassen, wird automatisch durch die Umgebung bereitgestellt
 
         // --- Gemini AI Function ---
         const callGemini = async (prompt, system = "Du bist ein professioneller Atletica X-Five Fitnesscoach.") => {
@@ -274,7 +275,7 @@
                                                 <div className="p-6 bg-zinc-800/30 border-b border-zinc-800 flex justify-between items-center">
                                                     <div>
                                                         <h4 className="font-black text-white italic uppercase leading-none">{ex.name}</h4>
-                                                        <p className="text-[9px] text-zinc-500 uppercase font-black tracking-widest mt-2">{ex.desc || 'Kabelzug'}</p>
+                                                        <p className="text-[9px] text-zinc-500 uppercase font-black tracking-widest mt-1">{ex.desc || 'Kabelzug'}</p>
                                                     </div>
                                                     <span className="text-[9px] font-black bg-black px-2 py-1 rounded text-blue-400 border border-zinc-800">{ex.target}</span>
                                                 </div>
@@ -290,6 +291,7 @@
                                                                 value={logs[ex.id]?.[i]?.reps || ''}
                                                                 onChange={e => setLogs(p => ({ ...p, [ex.id]: { ...p[ex.id], [i]: { ...p[ex.id]?.[i], reps: e.target.value } } }))}
                                                             />
+                                                            <CheckCircle2 size={24} className={logs[ex.id]?.[i]?.reps ? 'text-emerald-500' : 'text-zinc-900'} />
                                                         </div>
                                                     ))}
                                                 </div>
